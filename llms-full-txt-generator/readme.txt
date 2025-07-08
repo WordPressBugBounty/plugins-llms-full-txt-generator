@@ -3,7 +3,7 @@ Contributors: rankth
 Tags: llms, txt generator, AI LLM, rankmath, seo, Yoast
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,9 @@ Use Markdown formatting to create a clear structure, including headings and link
 1. The LLMS Full TXT Generator settings page
 
 == Changelog ==
+= 2.0.1 =
+* PHP Error Fix
+
 = 2.0.0 =
 * Added no-index and robots.txt support 
 * Added proper UTF-8 BOM handling for generated files

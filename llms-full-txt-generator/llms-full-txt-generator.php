@@ -2,7 +2,7 @@
 /*
 Plugin Name: LLMS Full TXT Generator
 Description: Automatically generates llms.txt and llms-full.txt files in the root directory of your WordPress website.
-Version: 2.0
+Version: 2.0.1
 Author: rankth
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -236,7 +236,10 @@ class LLMS_Full_Txt_Generator {
                     file_put_contents($file_path, "\xEF\xBB\xBF"); // Write empty file with UTF-8 BOM
                 }
             }
-            add_settings_error('llms_txt_generator', 'no_post_types', __('No post types selected. Selected files have been cleared.', 'llms-full-txt-generator'), 'updated');
+            // Only add settings error if we're in admin context (function exists)
+            if (function_exists('add_settings_error')) {
+                add_settings_error('llms_txt_generator', 'no_post_types', __('No post types selected. Selected files have been cleared.', 'llms-full-txt-generator'), 'updated');
+            }
             return;
         }
 
@@ -337,7 +340,10 @@ class LLMS_Full_Txt_Generator {
             implode(' and ', $files_generated)
         );
         
-        add_settings_error('llms_txt_generator', 'files_generated', $message, 'updated');
+        // Only add settings error if we're in admin context (function exists)
+        if (function_exists('add_settings_error')) {
+            add_settings_error('llms_txt_generator', 'files_generated', $message, 'updated');
+        }
     }
 
     private function parse_url_rules($rules_string) {
