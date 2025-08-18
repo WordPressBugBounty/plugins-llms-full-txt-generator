@@ -209,14 +209,36 @@ if (isset($_GET['error']) && $_GET['error'] === 'no_files') {
                             <th scope="row"><?php esc_html_e('Include URLs', 'llms-full-txt-generator'); ?></th>
                             <td>
                                 <textarea name="llms_full_txt_generator_include_urls" rows="5" cols="50"><?php echo esc_textarea(get_option('llms_full_txt_generator_include_urls')); ?></textarea>
-                                <p class="description"><?php esc_html_e('Enter URLs to include, one per line. Use * as a wildcard.', 'llms-full-txt-generator'); ?></p>
+                                <p class="description">
+                                    <?php 
+                                    echo wp_kses(
+                                        __('Enter URLs to include, one per line. Examples:<br>
+                                        • /checkout (checkout page)<br>
+                                        • https://yoursitename/your-landing-page/ (your landing page)<br/>
+                                        These included links will be appended with the list of links generated with selected posttypes.', 'llms-full-txt-generator'),
+                                        array('br' => array())
+                                    ); 
+                                    ?>
+                                </p>
                             </td>
                         </tr>
                         <tr valign="top">
                             <th scope="row"><?php esc_html_e('Exclude URLs', 'llms-full-txt-generator'); ?></th>
                             <td>
                                 <textarea name="llms_full_txt_generator_exclude_urls" rows="5" cols="50"><?php echo esc_textarea(get_option('llms_full_txt_generator_exclude_urls')); ?></textarea>
-                                <p class="description"><?php esc_html_e('Enter URLs to exclude, one per line. Use * as a wildcard.', 'llms-full-txt-generator'); ?></p>
+                                <p class="description">
+                                    <?php 
+                                    echo wp_kses(
+                                        __('Enter URLs to exclude, one per line. Examples:<br>
+                                        • /private/* (exclude all pages under private)<br>
+                                        • /draft-* (exclude URLs starting with draft-)<br>
+                                        • *.tmp (exclude files ending with .tmp)<br>
+                                        • /members/* (exclude member pages)<br>
+                                        Excluded URLs take precedence over included URLs.', 'llms-full-txt-generator'),
+                                        array('br' => array())
+                                    ); 
+                                    ?>
+                                </p>
                             </td>
                         </tr>
                         <tr valign="top">
@@ -255,7 +277,7 @@ if (isset($_GET['error']) && $_GET['error'] === 'no_files') {
                                     <?php esc_html_e('Exclude pages blocked by robots.txt or marked as noindex', 'llms-full-txt-generator'); ?>
                                 </label>
                                 <p class="description">
-                                    <?php esc_html_e('When enabled, pages that are blocked in robots.txt or have noindex meta tags will be excluded from the generated files. This works with popular SEO plugins like Yoast SEO, Rank Math, and All in One SEO.', 'llms-full-txt-generator'); ?>
+                                    <?php esc_html_e('When enabled, pages that are blocked in robots.txt or have noindex meta tags will be excluded from the generated files. This works with popular SEO plugins like Yoast SEO, Rank Math, SEOPress and All in One SEO.', 'llms-full-txt-generator'); ?>
                                 </p>
                             </td>
                         </tr>
