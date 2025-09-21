@@ -73,21 +73,19 @@ Use Markdown formatting to create a clear structure, including headings and link
 Media files are documented in a structured format with detailed information:
 
 Example for images:
-```
-### Image Title
-- **URL**: https://example.com/image.jpg
-- **Alt Text**: Descriptive alt text for the image
-- **Caption**: Image caption if available
-- **Description**: Detailed description of the image
-```
+
+* Image Title
+  - **URL**: https://example.com/image.jpg
+  - **Alt Text**: Descriptive alt text for the image
+  - **Caption**: Image caption if available
+  - **Description**: Detailed description of the image
 
 Example for documents:
-```
-### Document Title
-- **URL**: https://example.com/document.pdf
-- **Caption**: Document caption if available
-- **Description**: Description or summary of the document
-```
+*  Document Title
+  - **URL**: https://example.com/document.pdf
+  - **Caption**: Document caption if available
+  - **Description**: Description or summary of the document
+
 
 This structured format helps AI systems better understand your media content.
 
