@@ -1,0 +1,175 @@
+.generate-tab h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.files-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.file-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.file-info strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.file-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #646970;
+}
+
+.generate-btn {
+  background: #6B33C1;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.generate-btn:disabled {
+  background: #a7aaad;
+  cursor: not-allowed;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: #6B33C1;
+}
+
+.existing-files {
+  display: flex;
+  margin-top: 19px;
+  gap: 12px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.file-link {
+  background-color: #EFEAFF;
+  padding: 12px 32px;
+  border-radius: 28px;
+
+}
+.file-link a {
+  text-decoration: none !important;
+  box-shadow: none;
+}
+
+.file-label {
+  font-weight: 500;
+  color: #6B33C1;
+}
+
+.file-svg-label {
+    margin-left: 6px;
+    padding-top: 5px;
+
+}
+
+.file-label-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-item a {
+  color: #2271b1;
+  text-decoration: none;
+}
+
+.file-item a:hover {
+  text-decoration: underline;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #d63638;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.delete-btn:hover {
+  color: #b32d2e;
+}
+
+.generate-section {
+  background-color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 16px;
+}
+
+.regen-container {
+  display: flex;
+  align-items: center;
+
+}
+
+.regen-icon {
+  margin-left: 6px;
+}
+
+.generate-tab-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.generate-main-content {
+  flex: 1;
+  min-width: 0; /* Important for flex */
+}
+
+.generate-sidebar {
+  flex-shrink: 0;
+  width: 380px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .generate-tab-wrapper {
+    flex-direction: column;
+  }
+  
+  .generate-sidebar {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+
+
+
+
+.regen-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
