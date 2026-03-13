@@ -5,8 +5,9 @@ import SettingTab from './pages/SettingTab/SettingTab';
 import './App.css';
 import BarLoader from './components/Loader/Loader';
 import FilterIcon from './icons/FilterIcon';
+import AnalyticsIcon from './icons/AnalyticsIcon';
 import NavTabIcon from './icons/NavTabIcon';
-
+import AnalyticsTab from './pages/AnalyticsTab/AnalyticsTab';
 const STORAGE_KEY = 'GenerateTab__filesToGenerate';
 
 const App = () => {
@@ -192,6 +193,14 @@ const App = () => {
             <div className='nav-tab-text'>Generate</div>
           </div>
         </a>
+         <a href="#" className={`nav-tab ${tab === 'analytics' ? 'nav-tab-active' : ''}`} onClick={(e) => { e.preventDefault(); setTab('analytics'); }}>
+          <div className='nav-tab-sub-div'>
+            <div className='nav-tab-svg'>
+              <AnalyticsIcon />
+            </div>
+            <div className='nav-tab-text'>Analytics</div>
+          </div>
+        </a>
         <a href="#" className={`nav-tab ${tab === 'settings' ? 'nav-tab-active' : ''}`} onClick={(e) => { e.preventDefault(); setTab('settings'); }}>
           <div className='nav-tab-sub-div'>
             <div className='nav-tab-svg'>
@@ -210,6 +219,10 @@ const App = () => {
             generating={generating}
             onGenerate={generate}
             onDelete={deleteFile}
+          />
+        ) : tab === 'analytics' ? (
+          <AnalyticsTab
+          
           />
         ) : (
           <SettingTab

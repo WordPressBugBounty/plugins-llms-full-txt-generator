@@ -27,15 +27,18 @@ const UpgradeBanner = () => {
         <p>
           {__('Unlock powerful advanced features and get full control over your llms.txt and llms-full.txt files.', 'llms-full-txt-generator')}
         </p>
-
         <ul className="llms-pro-features-list">
-          <li>{__('Company Information Management – Add company name, email, description and more for inclusion in metadata', 'llms-full-txt-generator')}</li>
-          <li>{__('Flexible Post Type Selection – Choose which post types to include (posts, pages, products, custom types) with specific filters', 'llms-full-txt-generator')}</li>
-          <li>{__('WooCommerce Product Controls – Select what appears: name, price, SKU, attributes and more', 'llms-full-txt-generator')}</li>
-          <li>{__('External URL Handling – Add specific external URLs and exclude others using wildcards (e.g., /draft-*, /private/)', 'llms-full-txt-generator')}</li>
-          <li>{__('Advanced Inclusion/Exclusion – Automatically remove URLs blocked by robots.txt and use wildcard patterns', 'llms-full-txt-generator')}</li>
-          <li>{__('Update Frequency Controls – Schedule automatic regeneration (daily, weekly, monthly) or trigger manually', 'llms-full-txt-generator')}</li>
-          <li>{__('Preview & Regeneration – Preview content before saving and regenerate/save with one click', 'llms-full-txt-generator')}</li>
+          <li>Company metadata management</li>
+          <li>Flexible post type selection</li>
+          <li>WooCommerce product controls</li>
+          <li>External URL handling & wildcards</li>
+          <li>Advanced include/exclude rules</li>
+          <li>Scheduled regeneration</li>
+          <li>Preview & one-click update</li>
+          <li>Multisite network support</li>
+          <li>AI crawler analytics</li>
+          <li>Role-based permissions</li>
+          <li>AI usage policy settings</li>
         </ul>
 
         <div className="llms-upgrade-buttons">

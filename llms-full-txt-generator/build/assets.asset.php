@@ -7,5 +7,5 @@ return array (
     2 => 'wp-element',
     3 => 'wp-i18n',
   ),
-  'version' => 1767692816,
+  'version' => 1773382271,
 );

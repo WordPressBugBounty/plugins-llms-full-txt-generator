@@ -80,7 +80,7 @@ function SortablePostTypeItem({
 // ---------------------------------------------------------------------
 // Main SettingTab Component
 // ---------------------------------------------------------------------
-const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSave }) => {
+const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSave, isAdmin = false }) => {
   const sectionsRef = useRef({});
   const formContainerRef = useRef(null);
 
@@ -376,6 +376,9 @@ const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSa
     { key: 'updateFrequency', label: 'Update Frequency' },
     { key: 'seo', label: 'SEO Settings' },
     { key: 'multilingual', label: 'Multilingual Support' },
+    { key: 'aiPolicy', label: 'AI Usage Policy' },
+    { key: 'roleCapabilities', label: 'Role Capabilities' },
+    { key: 'multisite', label: 'Multisite Settings' }
   ];
 
   const scrollToSection = (key) => {
@@ -397,6 +400,52 @@ const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSa
     { id: 'showUrl', label: 'Show Product URL' },
     { id: 'showImageUrl', label: 'Show Product Image URL' },
   ];
+
+
+  const demoRoles = {
+    administrator: {
+      display_name: 'Administrator',
+      capabilities: {
+        generate: true,
+        view_analytics: true,
+        manage_settings: true,
+      },
+    },
+    editor: {
+      display_name: 'Editor',
+      capabilities: {
+        generate: true,
+        view_analytics: true,
+        manage_settings: false,
+      },
+    },
+    author: {
+      display_name: 'Author',
+      capabilities: {
+        generate: true,
+        view_analytics: false,
+        manage_settings: false,
+      },
+    },
+    contributor: {
+      display_name: 'Contributor',
+      capabilities: {
+        generate: false,
+        view_analytics: false,
+        manage_settings: false,
+      },
+    },
+    subscriber: {
+      display_name: 'Subscriber',
+      capabilities: {
+        generate: false,
+        view_analytics: false,
+        manage_settings: false,
+      },
+    },
+  };
+
+  const hasRoles = Object.keys(demoRoles).length > 0;
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onSave(); }} className="setting-tab">
@@ -448,7 +497,7 @@ const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSa
                   onChange={(e) => setField('adminEmail', e.target.value)}
                 />
                 <div className="email-name-label-note" ><span> <strong>Note: </strong> Leave this field empty if you don’t want the email to be displayed.
-                  </span>
+                </span>
                 </div>
               </div>
             </div>
@@ -855,9 +904,167 @@ const SettingTab = ({ data, saving, sublistOpen, onToggleSublist, onChange, onSa
               </div>
             </div>
           </LockedSection>
-
-          <div className="bottom-spacer" />
         </div>
+
+        {/* AI USAGE POLICY */}
+        <div className="section-wrapper" ref={(el) => (sectionsRef.current['aiPolicy'] = el)}>
+          <LockedSection>
+            <div
+              className="section-wrapper" >
+              <div className="settings-tab-containers">
+                <h3 className="llms-heading">
+                  AI Usage Policy{' '}
+                </h3>
+                <div className="ai-policy-container">
+                  <label className="company-name-label">Select Policy Type</label>
+                  <select className="tab-setting-select" disabled>
+                    <option value="rag-only">RAG-Only (Retrieval Augmented Generation)</option>
+                    <option value="creative-commons">Creative Commons License</option>
+                    <option value="strict-no-ai" selected>
+                      Strict No AI Policy
+                    </option>
+                    <option value="custom">Custom Policy</option>
+                  </select>
+                  <p className="description">
+                    Choose a predefined AI usage policy or provide a custom message
+                  </p>
+                  {/* Showing custom policy variant as example */}
+                  <div className="custom-policy-input-container" style={{ marginTop: '15px' }}>
+                    <label className="company-name-label">Custom Policy Message</label>
+                    <textarea
+                      className="regular-text"
+                      rows={6}
+                      readOnly
+                      defaultValue={`We respect AI crawlers and LLMs that follow ethical practices.
+**Allowed:**
+- Using our content for model training **only if** proper attribution is provided
+- Citing our articles with canonical link
+- Using small excerpts (under 150 words) with clear source link
+
+**Not allowed:**
+- Scraping large portions without permission
+- Using our content to train models that will directly compete with our business
+- Removing or obscuring authorship / branding
+- Generating derivative content that replaces original human-authored articles
+
+Last updated: March 2025`}
+                    />
+                    <p className="description-note">
+                      <strong>Note:</strong> Markdown formatting (bold, italics, links, lists) is
+                      supported and will be rendered in the generated files.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </LockedSection>
+        </div>
+
+        {/* ROLE CAPABILITIES */}
+        <div className="section-wrapper" ref={(el) => (sectionsRef.current['roleCapabilities'] = el)}>
+          <LockedSection>
+      <div className="settings-tab-containers">
+        <h3 className="llms-heading">
+          Role Capabilities{' '}
+          {!isAdmin && <span style={{ color: '#999', fontSize: '12px' }}>(Admin only)</span>}
+        </h3>
+
+        <div className="role-capabilities-container">
+          <p className="description">
+            Configure which WordPress roles can perform specific actions in the LLMS TXT Generator plugin.
+          </p>
+
+          {hasRoles ? (
+            <table className="role-capabilities-table">
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Generate</th>
+                  <th>Analytics</th>
+                  <th>Settings</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(demoRoles).map(([roleName, roleData]) => {
+                  const isAdminRole = roleName === 'administrator';
+
+                  return (
+                    <tr key={roleName} className={isAdminRole ? 'role-admin' : ''}>
+                      <td className="role-name">
+                        {roleData.display_name}
+                        {isAdminRole && (
+                          <span style={{ color: '#999', fontSize: '12px' }}> (locked)</span>
+                        )}
+                      </td>
+
+                      <td>
+                        <div className={isAdminRole ? 'admin-only' : ''}>
+                          <ToggleSwitch
+                            checked={isAdminRole ? true : (roleData.capabilities.generate || false)}
+                            disabled={isAdminRole || !isAdmin}
+                          />
+                        </div>
+                      </td>
+
+                      <td>
+                        <div className={isAdminRole ? 'admin-only' : ''}>
+                          <ToggleSwitch
+                            checked={isAdminRole ? true : (roleData.capabilities.view_analytics || false)}
+                            disabled={isAdminRole || !isAdmin}
+                          />
+                        </div>
+                      </td>
+
+                      <td>
+                        <div className={isAdminRole ? 'admin-only' : ''}>
+                          <ToggleSwitch
+                            checked={isAdminRole ? true : (roleData.capabilities.manage_settings || false)}
+                            disabled={isAdminRole || !isAdmin}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p className="description">Loading role capabilities...</p>
+          )}
+        </div>
+      </div>
+          </LockedSection>
+        </div>
+         {/* MULTISITE SUPPORT */}
+        <div  className="section-wrapper" ref={(el) => (sectionsRef.current['multisite'] = el)}  >
+          <LockedSection>
+    
+      <div className="settings-tab-containers">
+        <h3 className="llms-heading">
+          Multisite Support
+        
+        </h3>
+
+        <div className="seo-container">
+          <ToggleSwitch   />
+
+          <div>
+            <strong>Generate llms.txt files for all sites</strong>
+            <p className="description">
+              When enabled, llms.txt files are generated for each site in the network.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bottom-spacer" />
+    
+          </LockedSection>
+        </div>
+
+
+
+
       </div>
     </form>
   );

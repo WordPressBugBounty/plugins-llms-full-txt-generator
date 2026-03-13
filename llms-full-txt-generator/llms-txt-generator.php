@@ -2,7 +2,7 @@
 /*
 Plugin Name: LLMS Full TXT Generator
 Description: Automatically generates llms.txt and llms-full.txt files in the root directory of your WordPress website. Supports SEO settings from WordPress core, Yoast SEO, Rank Math, SEOPress, and All in One SEO.
-Version: 2.0.6
+Version: 2.0.7
 Author: rankth
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

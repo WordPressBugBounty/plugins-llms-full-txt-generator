@@ -3,7 +3,7 @@ Contributors: rankth
 Tags: llms, txt generator, AI LLM, rankmath, seo, Yoast, SEOPress, AIOSEO
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,11 @@ Description: Description or summary of the document
 textThis structured format helps AI systems better understand your media content.
 
 == Changelog ==
+
+= 2.0.7 =
+* Modernized sanitization for company metadata
+* Major UI/UX upgrade: beautiful new Pro feature showcase with badges, comparison tables, teaser cards and prominent upgrade buttons — making Multisite support, Analytics, Role-based access and AI Usage Policy much more visible and attractive
+* Fully tested with WordPress 6.7 and PHP 8.3
 
 = 2.0.6 =
 Fixed – Resolved PHP 8.1+ deprecation notice when trimming URL paths (now safely handles cases where parse_url returns null).

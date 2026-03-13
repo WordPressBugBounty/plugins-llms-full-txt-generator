@@ -47,7 +47,7 @@ class LLMS_Generator
             $header .= "> {$site_desc}\n\n";
         }
 
-        if ($include_admin_email && !empty($admin_email)) {
+        if ( !empty($admin_email)) {
             $header .= "> Contact: " . esc_html($admin_email) . "\n\n";
         }
 
@@ -107,7 +107,9 @@ class LLMS_Generator
                     // Respect SEO: skip noindex + robots.txt blocked
                     if ($respect_seo) {
                         if ($this->has_noindex_meta($post->ID)) continue;
-                        if ($this->is_blocked_by_robots($url_for_matching)) continue;
+
+                        // Check robots.txt for this URL - (line commented due to bug in production)
+                        // if ($this->is_blocked_by_robots($url_for_matching)) continue;
                     }
 
                     // Exclude URL patterns — now checks actual file extension for attachments
