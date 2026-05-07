@@ -9,6 +9,7 @@ import AnalyticsIcon from './icons/AnalyticsIcon';
 import NavTabIcon from './icons/NavTabIcon';
 import AnalyticsTab from './pages/AnalyticsTab/AnalyticsTab';
 const STORAGE_KEY = 'GenerateTab__filesToGenerate';
+import VisibilityAds from './components/VisibilityAds/VisibilityAds';
 
 const App = () => {
   const [tab, setTab] = useState('generate');
@@ -184,7 +185,8 @@ const App = () => {
         </div>
       )}
 
-      <nav className="nav-tab-wrapper">
+      <div className="nav-tab-wrapper">
+        <div className="nav-tab-subcontainer">
         <a href="#" className={`nav-tab ${tab === 'generate' ? 'nav-tab-active' : ''}`} onClick={(e) => { e.preventDefault(); setTab('generate'); }}>
           <div className='nav-tab-sub-div'>
             <div className='nav-tab-svg'>
@@ -209,7 +211,12 @@ const App = () => {
             <div className='nav-tab-text'>Settings</div>
           </div>
         </a>
-      </nav>
+        </div>
+ <div className='nav-tab-sub-div'>
+          <VisibilityAds />
+        </div>
+        
+      </div>
 
       <div className="tab-content">
         {tab === 'generate' ? (

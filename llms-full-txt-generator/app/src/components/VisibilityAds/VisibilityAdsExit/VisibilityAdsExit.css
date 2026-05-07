@@ -1,0 +1,142 @@
+.visibility-ads-shell {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: stretch;
+    margin-left: 2vw;
+}
+
+.visibility-ads-exit-button {
+    position: absolute;
+    top: 5%;
+    right: 5px;
+
+    z-index: 3;
+    width: 25px;
+    height: 25px;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    font-size: 16px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out
+}
+
+
+
+/* Tablet screens (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .visibility-ads-exit-button {
+        right: 2px;
+        width: 15px;
+        height: 15px;
+        top: 37px;
+    }
+}
+
+
+
+.visibility-ads-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visibility-ads-popup__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border: 0;
+    background: rgba(15, 23, 42, 0.35);
+    cursor: pointer;
+}
+
+.visibility-ads-popup__panel {
+    position: relative;
+    z-index: 1;
+    width: min(320px, calc(100% - 24px));
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
+    padding: 16px;
+}
+
+.visibility-ads-popup__panel h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: #0f172a;
+}
+
+.visibility-ads-popup__panel p {
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #475569;
+}
+
+.visibility-ads-popup__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.visibility-ads-popup__button {
+    border: 0;
+    border-radius: 9999px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.visibility-ads-popup__button--secondary {
+    background: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.visibility-ads-popup__button--primary {
+    background: #6b33c1;
+    color: #ffffff;
+    box-shadow: 0 8px 16px rgba(107, 51, 193, 0.18);
+}
+
+.visibility-ads-popup__button--primary:hover {
+    background: #5b2ba9;
+}
+
+.visibility-ads-popup__button--secondary:hover {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .visibility-ads-exit-button {
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .visibility-ads-popup__panel {
+        width: calc(100% - 16px);
+        padding: 14px;
+    }
+
+    .visibility-ads-popup__actions {
+        flex-direction: column;
+    }
+
+    .visibility-ads-popup__button {
+        width: 100%;
+    }
+}
