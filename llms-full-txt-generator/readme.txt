@@ -1,14 +1,14 @@
 === LLMs.txt and LLMs-Full.txt Generator ===
 Contributors: rankth
-Tags: llms, txt generator, AI LLM, rankmath, seo, Yoast, SEOPress, AIOSEO
+Tags: llms, txt, generator, AI, seo
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Generate llms.txt and llms-full.txt files for WordPress to guide AI and LLMs. Fully compatible with Yoast SEO, Rank Math, SEOPress, and All in One SEO.
+Generate structured llms.txt files for WordPress to optimize AI model interaction with your content.
 
 == Description ==
 
@@ -115,6 +115,9 @@ Description: Description or summary of the document
 textThis structured format helps AI systems better understand your media content.
 
 == Changelog ==
+
+= 2.0.9 =
+* Fixed Security issues.
 
 = 2.0.8 =
 * Fixed **Minor Bugs** – Resolved minor issues to improve overall stability
