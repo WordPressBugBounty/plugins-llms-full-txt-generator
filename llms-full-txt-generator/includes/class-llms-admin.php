@@ -2,10 +2,16 @@
 if (!defined('ABSPATH')) exit;
 
 class LLMS_Admin {
+    private $plugin_basename;
+
     public function __construct() {
+        $this->plugin_basename = plugin_basename(LLMS_PLUGIN_FILE);
+
         add_action('admin_menu', [$this, 'add_menu']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue']);
         add_action('admin_init', [$this, 'init_settings']);
+        add_filter('plugin_action_links_' . $this->plugin_basename, [$this, 'add_deactivation_warning']);
+        add_filter('network_admin_plugin_action_links_' . $this->plugin_basename, [$this, 'add_deactivation_warning']);
     }
 
     public function add_menu() {
@@ -70,5 +76,16 @@ class LLMS_Admin {
             update_option('llms_full_txt_generator_post_types_order', '');
             update_option('llms_full_txt_generator_initialized', 'yes');
         }
+    }
+
+    public function add_deactivation_warning($actions) {
+        if (empty($actions['deactivate'])) {
+            return $actions;
+        }
+
+        $warning = esc_js(__('Deactivating this plugin will delete the generated llms.txt and llms-full.txt files'));
+        $actions['deactivate'] = str_replace('<a ', '<a onclick="return confirm(\'' . $warning . '\')" ', $actions['deactivate']);
+
+        return $actions;
     }
 }

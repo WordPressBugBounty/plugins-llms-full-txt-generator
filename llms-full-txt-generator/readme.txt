@@ -3,7 +3,7 @@ Contributors: rankth
 Tags: llms, txt, generator, AI, seo
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,9 @@ Description: Description or summary of the document
 textThis structured format helps AI systems better understand your media content.
 
 == Changelog ==
+
+= 2.1.2 =
+* Added - Warning message displayed before deactivating the plugin to inform users that the generated `llms.txt` and `llms-full.txt` files will be deleted.
 
 = 2.1.1 =
 * Fixed - Resolved Broken Access Control vulnerability by ensuring content generation runs strictly under Anonymous Visitor Context.
