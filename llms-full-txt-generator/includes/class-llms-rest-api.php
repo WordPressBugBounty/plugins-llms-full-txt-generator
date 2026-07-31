@@ -128,8 +128,8 @@ private function get_settings() {
         ],
 
         'existingFiles' => [
-            'llms.txt'      => file_exists(ABSPATH . 'llms.txt') ? home_url('/llms.txt') : null,
-            'llms-full.txt' => file_exists(ABSPATH . 'llms-full.txt') ? home_url('/llms-full.txt') : null,
+            'llms.txt'      => file_exists(LLMS_Generator::get_root_directory() . 'llms.txt') ? home_url('/llms.txt') : null,
+            'llms-full.txt' => file_exists(LLMS_Generator::get_root_directory() . 'llms-full.txt') ? home_url('/llms-full.txt') : null,
         ]
     ];
 }
@@ -169,8 +169,6 @@ private function get_settings() {
     public function generate($req)
     {
 
-
-
         $files = $req->get_param('files') ?? [];
         $allowed = ['llms.txt', 'llms-full.txt'];
         $files = array_intersect($files, $allowed);
@@ -189,13 +187,15 @@ private function get_settings() {
 
     public function delete_file($req)
     {
-        $file = $req['file'];
-        if (!in_array($file, ['llms.txt', 'llms-full.txt'])) {
-            return new WP_Error('invalid', 'Invalid file.');
+        $file = sanitize_file_name($req['file']);
+        if (!in_array($file, ['llms.txt', 'llms-full.txt'], true)) {
+            return new WP_Error('invalid', 'Invalid file.', ['status' => 400]);
         }
 
-        $path = ABSPATH . $file;
-        if (file_exists($path)) unlink($path);
+        $path = LLMS_Generator::get_root_directory() . $file;
+        if (file_exists($path) && is_file($path)) {
+            @unlink($path);
+        }
 
         return ['deleted' => $file];
     }

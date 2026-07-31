@@ -2,20 +2,21 @@
 /*
 Plugin Name: LLMS Full TXT Generator
 Description: Automatically generates llms.txt and llms-full.txt files in the root directory of your WordPress website. Supports SEO settings from WordPress core, Yoast SEO, Rank Math, SEOPress, and All in One SEO.
-Version: 2.0.9
+Version: 2.1.1
 Author: rankth
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: llms-full-txt-generator
-Tested up to: 6.8
+Tested up to: 7.0
  WC requires at least: 3.0.0
- WC tested up to: 10.3.4
+ WC tested up to: 10.8
  Requires PHP: 8.0
 
 */
 
 if (!defined('ABSPATH')) exit;
 
+define('LLMS_PLUGIN_FILE', __FILE__);
 define('LLMS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('LLMS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LLMS_BUILD_DIR', LLMS_PLUGIN_DIR . 'build');
@@ -23,13 +24,13 @@ define('LLMS_BUILD_URL', LLMS_PLUGIN_URL . 'build');
 
 require_once LLMS_PLUGIN_DIR . 'includes/class-llms-loader.php';
 
+register_activation_hook(LLMS_PLUGIN_FILE, ['LLMS_Generator', 'activate_plugin']);
+register_deactivation_hook(LLMS_PLUGIN_FILE, ['LLMS_Generator', 'deactivate_plugin']);
 
-add_action( 'before_woocommerce_init', function() {
-
-    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+add_action('before_woocommerce_init', function() {
+    if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', LLMS_PLUGIN_FILE, true);
     }
-
-} );
+});
 
 new LLMS_Loader();

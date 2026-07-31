@@ -107,16 +107,47 @@
   text-decoration: underline;
 }
 
+.file-item .delete-btn,
 .delete-btn {
-  background: none;
-  border: none;
-  color: #d63638;
+  opacity: 1 !important;
+  background: #FEE2E2;
+  border: 1px solid #FCA5A5;
+  color: #DC2626;
   cursor: pointer;
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  box-shadow: none;
+  outline: none;
 }
 
 .delete-btn:hover {
-  color: #b32d2e;
+  background: #FCA5A5;
+  border-color: #EF4444;
+  color: #991B1B;
+}
+
+.delete-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.delete-btn svg path {
+  fill: #DC2626;
+  transition: fill 0.2s ease;
+}
+
+.delete-btn:hover svg path {
+  fill: #991B1B;
 }
 
 .generate-section {

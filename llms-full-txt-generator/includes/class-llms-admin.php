@@ -37,7 +37,8 @@ class LLMS_Admin {
 
         $asset = file_exists($asset_file) ? include $asset_file : [];
         $deps = $asset['dependencies'] ?? ['jquery'];
-        $version = $asset['version'] ?? '1.0';
+        $js_file = LLMS_BUILD_DIR . '/index.js';
+        $version = file_exists($js_file) ? filemtime($js_file) : time();
 
         wp_register_script(
             'llms-react',

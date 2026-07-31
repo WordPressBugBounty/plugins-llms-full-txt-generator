@@ -412,19 +412,20 @@ td {
   background: none;
   border: none;
   cursor: pointer;
-  opacity: 0;
+  opacity: 1;
   transition: all 0.2s;
 }
 
 .hover-row:hover .delete-btn {
   opacity: 1;
 }
+
 .select-wrapper select:disabled {
   background: #f9fafb;
   border-color: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
-  background-image: none  !important;
+  background-image: none !important;
 }
 
 .delete-btn:hover {
@@ -503,12 +504,12 @@ td {
 }
 
 .search-input-container {
-     display: flex;
-    align-items: center;
-    border-bottom: 1px solid #94a3b8;
-    width: 250px;
-    transition: border-color 0.25s ease;
-    margin-right: 1vw
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #94a3b8;
+  width: 250px;
+  transition: border-color 0.25s ease;
+  margin-right: 1vw
 }
 
 .search-input-container:focus-within {
